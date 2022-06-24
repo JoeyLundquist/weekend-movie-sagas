@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 export default function MovieDetails() {
@@ -20,7 +21,8 @@ export default function MovieDetails() {
         <>
             <h3>{movies[id].title}</h3>
             <h4>{movies[id].description}</h4>
-            <img src={movies[id].poster}/>
+            <img src={movies[id].poster}/><br></br>
+            <Link to="/">Back To Home Page</Link>
         </>
     )
 }

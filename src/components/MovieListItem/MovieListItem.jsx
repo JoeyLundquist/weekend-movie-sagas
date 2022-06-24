@@ -7,15 +7,15 @@ export default function MovieListItem({movie}) {
     return(
         <>
              <h3>{movie.title}</h3>
-                            <img 
-                                src={movie.poster} 
-                                alt={movie.title}
-                                onClick={() => {
-                                    console.log('Movie DB Id', movie.id)
-                                    history.push(`/movie-details/${movie.id}`)
+            <img 
+                src={movie.poster} 
+                alt={movie.title}
+                onClick={() => {
+                    console.log('Movie DB Id', movie.id)
+                    history.push(`/movie-details/${movie.id}`)
 
-                                }}
-                            />
+                }}
+            />
         </>
     )
 }
