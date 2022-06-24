@@ -7,14 +7,20 @@ export default function MovieDetails() {
 
     console.log(movies)
     let {id} = useParams();
-    console.log('id is', id)
+    console.log('id is', Number(id))
 
+    for(let i = 0; i<movies.length; i++){
+        if(movies[i].id === Number(id)){
+            id = i
+            break
+        }
+    }
 
     return (
         <>
-            <h3>{movies[id-1].title}</h3>
-            <h4>{movies[id-1].description}</h4>
-            <img src={movies[id-1].poster}/>
+            <h3>{movies[id].title}</h3>
+            <h4>{movies[id].description}</h4>
+            <img src={movies[id].poster}/>
         </>
     )
 }
