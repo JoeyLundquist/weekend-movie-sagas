@@ -2,7 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 
-function MovieList() {
+
+import MovieListItem from '../MovieListItem/MovieListItem';
+
+export default function MovieList() {
+
+
 
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
@@ -18,8 +23,8 @@ function MovieList() {
                 {movies.map(movie => {
                     return (
                         <div key={movie.id} >
-                            <h3>{movie.title}</h3>
-                            <img src={movie.poster} alt={movie.title}/>
+                            <MovieListItem movie={movie}/>
+                           
                         </div>
                     );
                 })}
@@ -29,4 +34,3 @@ function MovieList() {
     );
 }
 
-export default MovieList;
