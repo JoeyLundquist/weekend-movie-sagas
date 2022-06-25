@@ -9,9 +9,8 @@ export default function MovieDetails() {
 
     const movie = useSelector(store => store.movieDetails);
 
-    console.log(movie)
     let {id} = useParams();
-    console.log('id is', Number(id))
+
     useEffect(() => {
         dispatch({
             type: 'FETCH_MOVIE_DETAILS',
