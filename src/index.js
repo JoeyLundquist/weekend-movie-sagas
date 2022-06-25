@@ -3,78 +3,31 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App.js';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+
 // Provider allows us to use redux within our react app
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
+
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
-import { takeEvery, put } from 'redux-saga/effects';
-import axios from 'axios';
+import { takeEvery } from 'redux-saga/effects';
+
+//Importing reducers
+import genres from './Redux/Reducers/genres';
+import movieDetails from './Redux/Reducers/movieDetails';
+import movies from './Redux/Reducers/movies';
+
+//Importing Sagas
+import fetchMovieDetails from './Redux/Sagas/fetchMovieDetails';
+import fetchAllMovies from './Redux/Sagas/fetchAllMovies';
 
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_MOVIE_DETAILS', fetchMovieDetails)
 }
-
-function* fetchAllMovies() {
-    // get all movies from the DB
-    try {
-        const movies = yield axios.get('/api/movie');
-        console.log('get all:', movies.data);
-        yield put({ type: 'SET_MOVIES', payload: movies.data });
-
-    } catch {
-        console.log('get all error');
-    }
-        
-}
-
-function* fetchMovieDetails(action) {
-    //Get a single movies details
-    try{
-        const movieDetails = yield axios.get(`/api/movie/${action.payload}`);
-        console.log('get movie details', movieDetails.data);
-        yield put({type: 'SET_MOVIE_DETAILS', payload: movieDetails.data});
-
-    }
-    catch {
-        console.log('get details error');
-    }
-}
-
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
-
-// Used to store movies returned from the server
-const movies = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_MOVIES':
-            return action.payload;
-        default:
-            return state;
-    }
-}
-
-// Used to store movie details
-const movieDetails = (state = {}, action) => {
-    switch(action.type) {
-        case 'SET_MOVIE_DETAILS':
-            return action.payload;
-        default:
-            return state;
-    }
-}
-
-// Used to store the movie genres
-const genres = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_GENRES':
-            return action.payload;
-        default:
-            return state;
-    }
-}
 
 // Create one store that all components can use
 const storeInstance = createStore(
