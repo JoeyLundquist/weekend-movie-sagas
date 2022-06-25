@@ -1,25 +1,59 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 
 const MovieForm = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
 
-    const [movieToAdd, setMovieToAdd] = useState({});
+    const [movieToAdd, setMovieToAdd] = useState({title: '', poster: '', description: '', genre: 0});
 
     const onSubmitMovie = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
+        console.log(movieToAdd)
+        if(!movieToAdd.title || !movieToAdd.poster || !movieToAdd.description || !movieToAdd.genre){
+            alert('Please fill out the forms')
+            return;
+        }
+        dispatch({
+            type: 'SEND_MOVIE_TO_ADD',
+            payload: movieToAdd
+        })
+        // setMovieToAdd({title: '', poster: '', description: '', genre: 0})
+        history.push('/')
     }
-
 
     return (
         <>
             <section>
                 <form onSubmit={onSubmitMovie}>
-                    <input type="text" placeholder="Movie Title" /><br></br>
-                    <input type="text" placeholder="Movie Poster URL" /><br></br>
-                    <textarea placeholder="Movie Description"></textarea><br></br>
-                    <select id="genres">
+                    <input 
+                        type="text" 
+                        required
+                        placeholder="Movie Title" 
+                        value={movieToAdd.title} 
+                        onChange={(e) => setMovieToAdd({...movieToAdd, title: e.target.value})}
+                    /><br></br>
+
+                    <input 
+                        type="text" 
+                        required
+                        placeholder="Movie Poster URL" 
+                        value={movieToAdd.poster} 
+                        onChange={(e) => setMovieToAdd({...movieToAdd, poster: e.target.value})}
+                    /><br></br>
+
+                    <textarea 
+                        placeholder="Movie Description" 
+                        required
+                        value={movieToAdd.description} 
+                        onChange={(e) => setMovieToAdd({...movieToAdd, description: e.target.value})}>
+                    </textarea><br></br>
+
+                    <label>Genre</label><br></br>
+                    <select id="genres" value={movieToAdd.genre} onChange={(e) => setMovieToAdd({...movieToAdd, genre: e.target.value})}>
+                        <option value="0">...</option>
                         <option value="1">Adventure</option>
                         <option value="2">Animated</option>
                         <option value="3">Biographical</option>

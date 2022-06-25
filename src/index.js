@@ -20,11 +20,13 @@ import movies from './Redux/Reducers/movies';
 //Importing Sagas
 import fetchMovieDetails from './Redux/Sagas/fetchMovieDetails';
 import fetchAllMovies from './Redux/Sagas/fetchAllMovies';
+import sendMovieToAdd from './Redux/Sagas/sendMovieToAdd';
 
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_MOVIE_DETAILS', fetchMovieDetails)
+    yield takeEvery('SEND_MOVIE_TO_ADD', sendMovieToAdd)
 }
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
