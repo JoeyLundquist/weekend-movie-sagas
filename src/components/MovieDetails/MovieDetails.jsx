@@ -3,12 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 
-
 export default function MovieDetails() {
     const dispatch = useDispatch()
     const history = useHistory();
-
-
 
     const movie = useSelector(store => store.movieDetails);
 
@@ -21,7 +18,6 @@ export default function MovieDetails() {
             payload: Number(id)
         }),
         history.push(`/movie-details/${id}`)
-
     }, [id])
 
     return (

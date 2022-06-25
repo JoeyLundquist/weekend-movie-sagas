@@ -1,26 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App/App.js';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-
-// Provider allows us to use redux within our react app
-import { Provider } from 'react-redux';
 import logger from 'redux-logger';
+import { Provider } from 'react-redux';
 
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery } from 'redux-saga/effects';
 
-//Importing reducers
-import genres from './Redux/Reducers/genres';
-import movieDetails from './Redux/Reducers/movieDetails';
-import movies from './Redux/Reducers/movies';
+import movies from "./Reducers/movies";
+import genres from "./Reducers/genres";
+import movieDetails from "./Reducers/movieDetails";
 
-//Importing Sagas
-import fetchMovieDetails from './Redux/Sagas/fetchMovieDetails';
-import fetchAllMovies from './Redux/Sagas/fetchAllMovies';
+import fetchAllMovies from "./Sagas/fetchAllMovies";
+import fetchMovieDetails from "./Sagas/fetchMovieDetails";
 
+const storeInstance = () => {
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
@@ -42,12 +35,5 @@ const storeInstance = createStore(
 
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
-
-ReactDOM.render(
-    <React.StrictMode>
-        <Provider store={storeInstance}>
-        <App />
-        </Provider>
-    </React.StrictMode>,
-    document.getElementById('root')
-);
+}
+export default storeInstance;
