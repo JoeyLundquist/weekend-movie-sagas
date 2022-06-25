@@ -7,12 +7,12 @@ const MovieForm = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const [movieToAdd, setMovieToAdd] = useState({title: '', poster: '', description: '', genre: 0});
+    const [movieToAdd, setMovieToAdd] = useState({title: '', poster: '', description: '', genre_id: 0});
 
     const onSubmitMovie = (e) => {
         e.preventDefault();
         console.log(movieToAdd)
-        if(!movieToAdd.title || !movieToAdd.poster || !movieToAdd.description || !movieToAdd.genre){
+        if(!movieToAdd.title || !movieToAdd.poster || !movieToAdd.description || !movieToAdd.genre_id){
             alert('Please fill out the forms')
             return;
         }
@@ -20,7 +20,6 @@ const MovieForm = () => {
             type: 'SEND_MOVIE_TO_ADD',
             payload: movieToAdd
         })
-        // setMovieToAdd({title: '', poster: '', description: '', genre: 0})
         history.push('/')
     }
 
@@ -52,7 +51,7 @@ const MovieForm = () => {
                     </textarea><br></br>
 
                     <label>Genre</label><br></br>
-                    <select id="genres" value={movieToAdd.genre} onChange={(e) => setMovieToAdd({...movieToAdd, genre: e.target.value})}>
+                    <select id="genres" value={movieToAdd.genre} onChange={(e) => setMovieToAdd({...movieToAdd, genre_id: e.target.value})}>
                         <option value="0">...</option>
                         <option value="1">Adventure</option>
                         <option value="2">Animated</option>
