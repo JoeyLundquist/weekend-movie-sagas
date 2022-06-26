@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import '../MovieForm/movieForm.css'
+import './movieDetails.css'
 
 export default function MovieDetails() {
     const dispatch = useDispatch()
@@ -43,12 +44,7 @@ export default function MovieDetails() {
 
     return (
         <>
-            
-            {
-                !inEditMode &&   
-                    <button onClick={editMode}>Edit</button>
-                    
-            }
+            <div className="movieDetailsCard">
             {
                 !inEditMode ?
                     <h3>{movie[0] && movie[0].title}</h3> 
@@ -84,7 +80,15 @@ export default function MovieDetails() {
                     <h5 key={i}>{g}</h5>
                 </>
             ))}
+            
             <img className="details-poster" src={movie[0] && movie[0].poster}/><br></br>
+            {
+                !inEditMode &&   
+                    <button className="editButton" onClick={editMode}>Edit</button>
+
+            }
+            </div>
+
 
             <Link to="/">Back To Home Page</Link>
         </>

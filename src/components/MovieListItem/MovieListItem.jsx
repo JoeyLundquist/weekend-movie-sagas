@@ -7,6 +7,7 @@ export default function MovieListItem({movie}) {
     return(
         <>
              <h3>{movie.title}</h3>
+             <div className="poster-container">
             <img 
                 src={movie.poster} 
                 alt={movie.title}
@@ -16,6 +17,7 @@ export default function MovieListItem({movie}) {
 
                 }}
             />
+            </div>
         </>
     )
 }

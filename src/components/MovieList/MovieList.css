@@ -23,6 +23,10 @@
     color: white;
     width: 100px;
     height: 50px;
-    border-radius: 20%;
+    border-radius: 5%;
     font-size: large;
 }
+
+.poster-container:hover {
+    cursor:pointer;
+  }
