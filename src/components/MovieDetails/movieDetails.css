@@ -19,3 +19,9 @@
 .genreAdder, .editDescriptionArea {
     display: inline-block;
 }
+
+.genreDeleteBtn{
+    display: inline-block;
+    background-color: transparent;
+    border: none
+}

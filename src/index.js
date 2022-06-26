@@ -23,6 +23,7 @@ import fetchAllMovies from './Redux/Sagas/fetchAllMovies';
 import sendMovieToAdd from './Redux/Sagas/sendMovieToAdd';
 import updateMovieDetails from './Redux/Sagas/updateMovieDetails';
 import addGenreToMovie from './Redux/Sagas/addGenreToMovie';
+import deleteGenreFromMovie from './Redux/Sagas/deleteGenreFromMovie';
 
 // Create the rootSaga generator function
 function* rootSaga() {
@@ -31,6 +32,7 @@ function* rootSaga() {
     yield takeEvery('SEND_MOVIE_TO_ADD', sendMovieToAdd);
     yield takeEvery('UPDATE_MOVIE_DETAILS', updateMovieDetails);
     yield takeEvery('ADD_GENRE_TO_MOVIE', addGenreToMovie);
+    yield takeEvery('DELETE_GENRE_FROM_MOVIE', deleteGenreFromMovie);
 }
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();

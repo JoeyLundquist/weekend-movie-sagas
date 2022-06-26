@@ -12,13 +12,14 @@ export default function MovieDetails() {
 
     //Declaring a variable for the edit mode to use conditional rendering
     let editingModeVariable = false;
+    let {id} = useParams();
     
     const movie = useSelector(store => store.movieDetails);
     const [editedMovieInfo, setEditedMovieInfo] = useState({})
     const [inEditMode, setInEditMode] = useState(false)
     const [genreToAdd, setGenreToAdd] = useState(0)
+    const [genreToDelete, setGenreToDelete] = useState({movieId: id, genreId: 0, genreName: ''})
 
-    let {id} = useParams();
 
 
     useEffect(() => {
@@ -49,7 +50,17 @@ export default function MovieDetails() {
             type: 'ADD_GENRE_TO_MOVIE',
             payload: {movie_id: id, genre_id: genreToAdd}
         })
+        setInEditMode(false)
     }
+
+    const deleteGenreFromMovie = () => {
+        
+        dispatch({
+            type:'DELETE_GENRE_FROM_MOVIE',
+            payload: genreToDelete
+        })
+    }
+    console.log(genreToDelete)
 
     return (
         <>
@@ -97,7 +108,9 @@ export default function MovieDetails() {
                                 <option value="12">Space-Opera</option>
                                 <option value="13">Superhero</option>
                             </select><br></br>
-                            <button onClick={addGenreToMovie}>Add Genre</button>
+                            <button onClick={addGenreToMovie}>Add Genre</button><br></br>
+                            <p>{genreToDelete.genreName}</p><br></br>
+                            <button onClick={deleteGenreFromMovie}>Delete Genre</button>
                         </div>
                         <br></br>
                         <button onClick={submitMovieDetailsChange}>Submit</button>
@@ -106,11 +119,26 @@ export default function MovieDetails() {
                     </>
             }
             
-            {movie[0] && movie[0].genres.map((g, i) => (
-                <>
-                    <h5 key={i}>{g}</h5>
-                </>
-            ))}
+            {
+                !inEditMode?
+                movie[0] && movie[0].genre.map((g) => (
+                    <>
+                        <h5 key={g.id}>{g.name}</h5>
+                    </>
+                )) 
+                :
+                movie[0] && movie[0].genre.map((g) => (
+                    <>
+                        <div>
+                            <h5 className="genreDeleteBtn" key={g.id}>{g.name}</h5>
+                            <button onClick={() => {
+                                setGenreToDelete({...genreToDelete, genreId:  g.id, genreName: g.name})
+                            }} 
+                            className="genreDeleteBtn">❌</button>
+                        </div>
+                    </>
+                )) 
+            }
             
             <img className="details-poster" src={movie[0] && movie[0].poster}/><br></br>
             {
