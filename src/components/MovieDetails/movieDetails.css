@@ -15,3 +15,13 @@
 .editButton {
     margin-top: 15px;
 }
+
+.genreAdder, .editDescriptionArea {
+    display: inline-block;
+}
+
+.genreDeleteBtn{
+    display: inline-block;
+    background-color: transparent;
+    border: none
+}

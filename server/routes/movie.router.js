@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
 	  movies.title,
 	  movies.poster,
 	  movies.description,
-	  array_agg(genres.name) AS genres
+    json_agg(json_build_object('name', genres.name, 'id', genres.id)) as genre
   FROM movies
   JOIN movies_genres
 	  ON movies.id = movies_genres.movie_id
