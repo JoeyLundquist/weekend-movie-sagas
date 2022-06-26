@@ -8,10 +8,11 @@ export default function MovieDetails() {
     const history = useHistory();
 
     //Declaring a variable for the edit mode to use conditional rendering
-    let inEditMode = true;
+    let inEditMode = false;
     
     const movie = useSelector(store => store.movieDetails);
-    const [editedMovieInfo, setEditedMovieInfo] = useState({title: movie[0].title, description: movie[0].description})
+    const [editedMovieInfo, setEditedMovieInfo] = useState({})
+    const [EditMode, setEditMode] = useState(false)
 
     let {id} = useParams();
 
@@ -30,11 +31,19 @@ export default function MovieDetails() {
         })
     }
 
+    const editMode = () => {
+            inEditMode = !inEditMode
+        console.log(inEditMode)
+        setEditMode(inEditMode)
+        setEditedMovieInfo({title: movie[0].title, description: movie[0].description})
+    }
+
     return (
         <>
-            <button onClick={submitMovieDetailsChange}>✅✅✅✅</button>
+            
+            <button onClick={editMode}>Edit</button>
             {
-                !inEditMode ?
+                !EditMode ?
                     <h3>{movie[0] && movie[0].title}</h3> 
                     : 
                     <>
@@ -48,14 +57,17 @@ export default function MovieDetails() {
             }
 
             {
-                !inEditMode ? 
+                !EditMode ? 
                     <h4>{movie[0] && movie[0].description}</h4> 
                     : 
-                    <textarea 
-                        type="text" 
-                        value={editedMovieInfo.description}
-                        onChange={(e) => setEditedMovieInfo({...editedMovieInfo, description: e.target.value})}
-                    />
+                    <>
+                        <textarea 
+                            type="text" 
+                            value={editedMovieInfo.description}
+                            onChange={(e) => setEditedMovieInfo({...editedMovieInfo, description: e.target.value})}
+                        /><br></br>
+                        <button onClick={submitMovieDetailsChange}>✅✅✅✅</button>
+                    </>
             }
             
             {movie[0] && movie[0].genres.map((g, i) => (
