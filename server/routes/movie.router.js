@@ -83,4 +83,25 @@ router.post('/', (req, res) => {
   })
 })
 
+router.put('/:id', (req, res) => {
+  console.log('Testing PUT ID params', req.params.id)
+  const newMovieDetailsQuery = `
+    UPDATE movies
+    SET title = $1, description = $2
+    WHERE id = $3
+  `
+  const sqlParams = [
+    req.body.title,
+    req.body.description,
+    Number(req.params.id)
+  ]
+  pool.query(newMovieDetailsQuery, sqlParams)
+      .then(dsRes => {
+        res.sendStatus(200)
+      })
+      .catch(err => {
+        // console.error('failed to update movie details', err)
+      })
+})
+
 module.exports = router;

@@ -16,6 +16,7 @@ export default function MovieDetails() {
 
     let {id} = useParams();
 
+    console.log(movie[0], editedMovieInfo)
     useEffect(() => {
         dispatch({
             type: 'FETCH_MOVIE_DETAILS',
@@ -35,7 +36,7 @@ export default function MovieDetails() {
             inEditMode = !inEditMode
         console.log(inEditMode)
         setEditMode(inEditMode)
-        setEditedMovieInfo({title: movie[0].title, description: movie[0].description})
+        setEditedMovieInfo({id: Number(id), title: movie[0].title, description: movie[0].description})
     }
 
     return (
