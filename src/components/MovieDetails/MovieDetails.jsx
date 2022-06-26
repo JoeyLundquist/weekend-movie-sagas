@@ -16,7 +16,7 @@ export default function MovieDetails() {
 
     let {id} = useParams();
 
-    console.log(movie[0], editedMovieInfo)
+
     useEffect(() => {
         dispatch({
             type: 'FETCH_MOVIE_DETAILS',
@@ -72,7 +72,8 @@ export default function MovieDetails() {
                             value={editedMovieInfo.description}
                             onChange={(e) => setEditedMovieInfo({...editedMovieInfo, description: e.target.value})}
                         /><br></br>
-                        <button onClick={submitMovieDetailsChange}>✅✅✅✅</button>
+                        <button onClick={submitMovieDetailsChange}>Submit</button>
+                        <button onClick={() => setInEditMode(false)}>Cancel</button>
                     </>
             }
             
