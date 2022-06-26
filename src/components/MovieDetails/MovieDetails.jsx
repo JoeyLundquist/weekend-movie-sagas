@@ -8,11 +8,11 @@ export default function MovieDetails() {
     const history = useHistory();
 
     //Declaring a variable for the edit mode to use conditional rendering
-    let inEditMode = false;
+    let editingModeVariable = false;
     
     const movie = useSelector(store => store.movieDetails);
     const [editedMovieInfo, setEditedMovieInfo] = useState({})
-    const [EditMode, setEditMode] = useState(false)
+    const [inEditMode, setInEditMode] = useState(false)
 
     let {id} = useParams();
 
@@ -30,21 +30,26 @@ export default function MovieDetails() {
             type: 'UPDATE_MOVIE_DETAILS',
             payload: editedMovieInfo
         })
+        setInEditMode(false)
     }
 
     const editMode = () => {
-            inEditMode = !inEditMode
-        console.log(inEditMode)
-        setEditMode(inEditMode)
+            editingModeVariable = !editingModeVariable
+
+        setInEditMode(editingModeVariable)
         setEditedMovieInfo({id: Number(id), title: movie[0].title, description: movie[0].description})
     }
 
     return (
         <>
             
-            <button onClick={editMode}>Edit</button>
             {
-                !EditMode ?
+                !inEditMode &&   
+                    <button onClick={editMode}>Edit</button>
+                    
+            }
+            {
+                !inEditMode ?
                     <h3>{movie[0] && movie[0].title}</h3> 
                     : 
                     <>
@@ -58,7 +63,7 @@ export default function MovieDetails() {
             }
 
             {
-                !EditMode ? 
+                !inEditMode ? 
                     <h4>{movie[0] && movie[0].description}</h4> 
                     : 
                     <>
