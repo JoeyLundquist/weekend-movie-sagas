@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
+import '../MovieForm/movieForm.css'
 
 export default function MovieDetails() {
     const dispatch = useDispatch()
@@ -68,6 +69,7 @@ export default function MovieDetails() {
                     : 
                     <>
                         <textarea 
+                            className="movieDescriptionTextArea"
                             type="text" 
                             value={editedMovieInfo.description}
                             onChange={(e) => setEditedMovieInfo({...editedMovieInfo, description: e.target.value})}

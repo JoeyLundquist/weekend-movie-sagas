@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
+
 
 import MovieListItem from '../MovieListItem/MovieListItem';
 
@@ -19,11 +21,11 @@ export default function MovieList() {
     return (
         <main>
             <h1>MovieList</h1>
-            <Link to="/add-movie">Add Movie</Link>
+            <button className='addMovieButton'><Link className='addMovieButton' to="/add-movie">Add Movie</Link></button>
             <section className="movies">
                 {movies.map(movie => {
                     return (
-                        <div key={movie.id} >
+                        <div className='movieCard' key={movie.id} >
                             <MovieListItem movie={movie}/>
                            
                         </div>

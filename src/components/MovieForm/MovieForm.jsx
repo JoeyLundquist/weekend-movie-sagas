@@ -1,3 +1,4 @@
+import './movieForm.css'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -27,7 +28,8 @@ const MovieForm = () => {
         <>
             <section>
                 <form onSubmit={onSubmitMovie}>
-                    <input 
+                    <input
+                        className="movieInput" 
                         type="text" 
                         required
                         placeholder="Movie Title" 
@@ -36,6 +38,7 @@ const MovieForm = () => {
                     /><br></br>
 
                     <input 
+                        className="movieInput"
                         type="text" 
                         required
                         placeholder="Movie Poster URL" 
@@ -44,6 +47,7 @@ const MovieForm = () => {
                     /><br></br>
 
                     <textarea 
+                        className='movieDescriptionTextArea'
                         placeholder="Movie Description" 
                         required
                         value={movieToAdd.description} 
