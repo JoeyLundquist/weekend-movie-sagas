@@ -15,3 +15,7 @@
 .editButton {
     margin-top: 15px;
 }
+
+.genreAdder, .editDescriptionArea {
+    display: inline-block;
+}

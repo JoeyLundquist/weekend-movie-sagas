@@ -23,4 +23,24 @@ router.get('/:id', (req, res) => {
       })
 });
 
+router.post('/', (req, res) => {
+  
+  const addGenreToMovieQuery = `
+    INSERT INTO movies_genres
+    (movie_id, genre_id)
+    VALUES 
+    ($1, $2);
+  `
+  const sqlParams = [req.body.movie_id, req.body.genre_id]
+
+  pool.query(addGenreToMovieQuery, sqlParams)
+      .then(dbRes => {
+        res.sendStatus(204)
+      })
+      .catch(err => {
+        console.log('FAILED to add genre', err)
+        res.sendStatus(500)
+      })
+})
+
 module.exports = router;
