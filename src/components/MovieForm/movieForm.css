@@ -1,0 +1,9 @@
+.movieInput {
+    width: 200px;
+    margin: 15px;
+}
+
+.movieDescriptionTextArea {
+    width: 300px;
+    height: 200px;
+}

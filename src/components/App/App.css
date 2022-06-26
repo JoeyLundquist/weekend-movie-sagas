@@ -22,8 +22,11 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
-.details-poster {
-  width: 200px;
-  height: 300px;
+ 
+body{
+  background-color: black;
+  color: white
 }
+
+
+

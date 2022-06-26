@@ -97,7 +97,7 @@ router.put('/:id', (req, res) => {
   ]
   pool.query(newMovieDetailsQuery, sqlParams)
       .then(dsRes => {
-        res.sendStatus(200)
+        res.sendStatus(201)
       })
       .catch(err => {
         // console.error('failed to update movie details', err)

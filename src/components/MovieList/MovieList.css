@@ -1,6 +1,7 @@
 .movies {
     display : flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .movies img {
@@ -8,3 +9,24 @@
     height:300px
 }
 
+.movieCard {
+    width: 250px;
+    border: 3px green solid;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.addMovieButton {
+    border: 1px solid blue;
+    background-color: blue;
+    color: white;
+    width: 100px;
+    height: 50px;
+    border-radius: 5%;
+    font-size: large;
+}
+
+.poster-container:hover {
+    cursor:pointer;
+  }
