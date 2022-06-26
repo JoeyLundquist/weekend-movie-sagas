@@ -22,7 +22,7 @@ export default function MovieDetails() {
             type: 'FETCH_MOVIE_DETAILS',
             payload: Number(id)
         }),
-        history.push(`/movie-details/${id}`)
+        history.push(`/details/${id}`)
     }, [id]);
 
     const submitMovieDetailsChange = () => {

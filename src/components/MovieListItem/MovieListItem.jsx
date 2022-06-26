@@ -12,7 +12,7 @@ export default function MovieListItem({movie}) {
                 alt={movie.title}
                 onClick={() => {
                     console.log('Movie DB Id', movie.id)
-                    history.push(`/movie-details/${movie.id}`)
+                    history.push(`/details/${movie.id}`)
 
                 }}
             />
