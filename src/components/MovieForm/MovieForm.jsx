@@ -68,6 +68,7 @@ const MovieForm = () => {
                         <option value="13">Superhero</option>
                     </select><br></br>
                     <input type="submit" value="Submit Movie"/>
+                    <button onClick={() => history.push('/')}>Cancel</button>
                 </form>
             </section>
         </>
