@@ -2,18 +2,16 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
-router.get('/:id', (req, res) => {
+router.get('/', (req, res) => {
   // Add query to get all genres
   console.log(req.params.id)
-  /***********************************************\
-  *TODO... CHANGE THIS TO SELECT ALL OF THE GENRES*
-  \***********************************************/
-  const sqlQuery = `
-  
-  `
-  const sqlParams = [req.params.id]
 
-  pool.query(sqlQuery, sqlParams)
+  const sqlQuery = `
+    SELECT name
+    FROM genres;
+  `
+
+  pool.query(sqlQuery)
       .then((dbRes) => {
         res.send(dbRes.rows)
       })
