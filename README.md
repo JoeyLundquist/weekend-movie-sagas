@@ -10,10 +10,10 @@ To see the fully functional site, please visit: [](https://glacial-springs-57525
 
 ## Screen Shot
 
-![Screenshot of the home page](./img/homepage.png')
-![Screenshot of details page](./img/details.png')
-![Screenshot of by Genres]('./img/byGenre.png')
-![Screenshot of edit mode]('./img/editmode.png')
+![Screenshot of the home page](./img/homepage.png)
+![Screenshot of details page](./img/details.png)
+![Screenshot of by Genres](./img/byGenre.png)
+![Screenshot of edit mode](./img/editmode.png)
 
 ### Prerequisites
 
