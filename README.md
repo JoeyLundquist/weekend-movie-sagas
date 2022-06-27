@@ -6,12 +6,14 @@ _Duration: 22 hour Sprint_
 
 I Made an app that will allow you to keep track of some movies as well as the poster and the description. Using React router to have different pages to be able to have a better view of the description of the movies as well as seeing what genre category you would put them in.
 
-To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](https://glacial-springs-57525.herokuapp.com/#/)
+To see the fully functional site, please visit: [](https://glacial-springs-57525.herokuapp.com/#/)
 
 ## Screen Shot
 
-[Screenshot of the home page](./img/homepage.png)
-[Screenshot of details page](./img/details.png)
+![Screenshot of the home page](./img/homepage.png')
+![Screenshot of details page](./img/details.png')
+![Screenshot of by Genres]('./img/byGenre.png')
+![Screenshot of edit mode]('./img/editmode.png')
 
 ### Prerequisites
 

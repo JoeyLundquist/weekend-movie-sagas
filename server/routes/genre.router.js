@@ -65,4 +65,26 @@ router.delete('/', (req, res) => {
       })
 })
 
+router.get('/:genre', (req, res) => {
+
+  const moviesByGenre = `
+    SELECT movies.*
+    FROM movies
+    JOIN movies_genres
+      ON movies_genres.movie_id = movies.id
+    JOIN genres
+      ON movies_genres.genre_id = genres.id
+    WHERE genres.name = $1;  
+  `
+  pool.query(moviesByGenre, [req.params.genre])
+      .then(dbRes => {
+        res.send(dbRes.rows)
+      })
+      .catch(err => {
+        console.error('Failed to get movies by genres', err)
+      })
+
+})
+
+
 module.exports = router;

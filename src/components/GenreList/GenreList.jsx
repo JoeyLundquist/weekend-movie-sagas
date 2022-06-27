@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import './genreList.css'
+import { Link } from "react-router-dom";
 
 //Component used to display the list of genres on top of the list of movies
 export default function GenreList() {
@@ -12,7 +13,7 @@ export default function GenreList() {
             <div className="genreListContainer">
                 {genres.map(g => (
                     <div className="genreListItems">
-                    <h5>{g.name}</h5>
+                        <Link to={`/genres/${g.name}`}><h5>{g.name}</h5></Link>
                     </div>
                 ))}
             </div>
