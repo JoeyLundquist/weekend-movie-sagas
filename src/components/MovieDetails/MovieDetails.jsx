@@ -1,3 +1,4 @@
+//Importing needed tools and css
 import { useParams } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
@@ -5,7 +6,7 @@ import { useEffect, useState } from "react";
 import '../MovieForm/movieForm.css'
 import './movieDetails.css'
 
-
+//Component for showing movie details
 export default function MovieDetails() {
     const dispatch = useDispatch()
     const history = useHistory();
@@ -14,6 +15,7 @@ export default function MovieDetails() {
     let editingModeVariable = false;
     let {id} = useParams();
     
+    //Declaring store variables and local state for editing movies
     const movie = useSelector(store => store.movieDetails);
     const [editedMovieInfo, setEditedMovieInfo] = useState({})
     const [inEditMode, setInEditMode] = useState(false)
@@ -21,7 +23,7 @@ export default function MovieDetails() {
     const [genreToDelete, setGenreToDelete] = useState({movieId: id, genreId: 0, genreName: ''})
 
 
-
+    //For on page load so you can refresh page or type in url
     useEffect(() => {
         dispatch({
             type: 'FETCH_MOVIE_DETAILS',
@@ -30,6 +32,7 @@ export default function MovieDetails() {
         history.push(`/details/${id}`)
     }, [id]);
 
+    //Used to call update movie saga to 
     const submitMovieDetailsChange = () => {
         dispatch({
             type: 'UPDATE_MOVIE_DETAILS',
@@ -38,6 +41,7 @@ export default function MovieDetails() {
         setInEditMode(false)
     }
 
+    //Used to switch back and forth from edit and view mode
     const editMode = () => {
             editingModeVariable = !editingModeVariable
 
@@ -45,6 +49,7 @@ export default function MovieDetails() {
         setEditedMovieInfo({id: Number(id), title: movie[0].title, description: movie[0].description})
     }
 
+    //Used to make saga call for adding new genres to movies
     const addGenreToMovie = () => {
         dispatch({
             type: 'ADD_GENRE_TO_MOVIE',
@@ -53,8 +58,8 @@ export default function MovieDetails() {
         setInEditMode(false)
     }
 
+    //Used to delete genres from movies
     const deleteGenreFromMovie = () => {
-        
         dispatch({
             type:'DELETE_GENRE_FROM_MOVIE',
             payload: genreToDelete
@@ -62,9 +67,11 @@ export default function MovieDetails() {
     }
     console.log(genreToDelete)
 
+    //Rendering component
     return (
         <>
             <div className="movieDetailsCard">
+                {/* Conditional render for edit mode */}
             {
                 !inEditMode ?
                     <h3>{movie[0] && movie[0].title}</h3> 
@@ -78,7 +85,7 @@ export default function MovieDetails() {
                         <br></br> 
                     </>
             }
-
+                {/* Conditional render for edit mode */}
             {
                 !inEditMode ? 
                     <h4>{movie[0] && movie[0].description}</h4> 
@@ -118,7 +125,7 @@ export default function MovieDetails() {
                         
                     </>
             }
-            
+                {/* Conditional render for edit mode */}
             {
                 !inEditMode?
                 movie[0] && movie[0].genre.map((g) => (
@@ -141,6 +148,7 @@ export default function MovieDetails() {
             }
             
             <img className="details-poster" src={movie[0] && movie[0].poster}/><br></br>
+                {/* Conditional render for edit mode */}
             {
                 !inEditMode &&   
                     <button className="editButton" onClick={editMode}>Edit</button>

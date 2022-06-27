@@ -1,0 +1,19 @@
+
+
+.genreListContainer{
+    margin: 0 auto;
+    text-align: center;
+    width: 95%;
+    height: 45px;
+    border: 1px solid green;
+    padding-top: 20px;
+}
+
+.genreListItems{
+    display: inline-block;
+    width: 100px;
+}
+
+.genreListItems h5{
+    margin: 0px;
+}

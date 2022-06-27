@@ -1,8 +1,9 @@
+//Importing axios communicate with server and put ot make a dispatch to sagas
 import { put } from "redux-saga/effects";
 import axios from "axios";
 
-function* fetchAllMovies() {
-    // get all movies from the DB
+//Used to make http request to get list of all movies from DB
+export default function* fetchAllMovies() {
     try {
         const movies = yield axios.get('/api/movie');
         console.log('get all:', movies.data);
@@ -13,4 +14,3 @@ function* fetchAllMovies() {
     }      
 }
 
-export default fetchAllMovies;

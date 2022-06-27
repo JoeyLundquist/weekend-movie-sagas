@@ -1,5 +1,5 @@
 // Used to store movie details
-const movieDetails = (state = {}, action) => {
+export default function movieDetails(state = {}, action) {
     switch(action.type) {
         case 'SET_MOVIE_DETAILS':
             return action.payload;
@@ -7,5 +7,3 @@ const movieDetails = (state = {}, action) => {
             return state;
     }
 }
-
-export default movieDetails;

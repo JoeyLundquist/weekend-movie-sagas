@@ -1,5 +1,5 @@
 // Used to store the movie genres
-const genres = (state = [], action) => {
+export default function genres(state = [], action) {
     switch (action.type) {
         case 'SET_GENRES':
             return action.payload;
@@ -8,4 +8,3 @@ const genres = (state = [], action) => {
     }
 }
 
-export default genres;
