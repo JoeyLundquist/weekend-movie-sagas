@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+//Route to get the list of movies for home page
 router.get('/', (req, res) => {
 
   const query = `SELECT * FROM movies ORDER BY "title" ASC`;
@@ -16,6 +17,7 @@ router.get('/', (req, res) => {
 
 });
 
+//Route to get the detailed view of the movies
 router.get('/:id', (req, res) => {
   console.log('get params', req.params.id)
 
@@ -46,6 +48,7 @@ router.get('/:id', (req, res) => {
 
 })
 
+//Route to post a new movie
 router.post('/', (req, res) => {
   console.log(req.body);
   // RETURNING "id" will give us back the id of the created movie
@@ -82,7 +85,7 @@ router.post('/', (req, res) => {
     res.sendStatus(500)
   })
 })
-
+//Route to update an existing movie
 router.put('/:id', (req, res) => {
   console.log('Testing PUT ID params', req.params.id)
   const newMovieDetailsQuery = `
@@ -100,7 +103,7 @@ router.put('/:id', (req, res) => {
         res.sendStatus(201)
       })
       .catch(err => {
-        // console.error('failed to update movie details', err)
+        console.error('failed to update movie details', err)
       })
 })
 

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+//Route to get all genres to diplay list on home page
 router.get('/', (req, res) => {
   // Add query to get all genres
   console.log(req.params.id)
@@ -21,6 +22,7 @@ router.get('/', (req, res) => {
       })
 });
 
+//Route to add a new genre to a movie
 router.post('/', (req, res) => {
   
   const addGenreToMovieQuery = `
@@ -41,6 +43,7 @@ router.post('/', (req, res) => {
       })
 })
 
+//Route to delete a genre from a movie
 router.delete('/', (req, res) => {
   console.log(req.body)
   const genreToDeleteFromMovie = `

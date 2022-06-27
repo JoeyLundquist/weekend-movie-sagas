@@ -1,5 +1,5 @@
 // Used to store movies returned from the server
-const movies = (state = [], action) => {
+export default function movies (state = [], action) {
     switch (action.type) {
         case 'SET_MOVIES':
             return action.payload;
@@ -7,5 +7,3 @@ const movies = (state = [], action) => {
             return state;
     }
 }
-
-export default movies;

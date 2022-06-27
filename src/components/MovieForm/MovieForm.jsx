@@ -1,19 +1,23 @@
-import './movieForm.css'
+//Importing tools and css
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import './movieForm.css'
 
 
-
-const MovieForm = () => {
+//Component for the new movie form
+export default function MovieForm() {
+    //Declaring history and dispatch tools
     const history = useHistory();
     const dispatch = useDispatch();
 
+    //Declaring local state to send to server
     const [movieToAdd, setMovieToAdd] = useState({title: '', poster: '', description: '', genre_id: 0});
 
+    //Used to send info to server
     const onSubmitMovie = (e) => {
         e.preventDefault();
-        console.log(movieToAdd)
+        //Checking all form is filled out before submitting.
         if(!movieToAdd.title || !movieToAdd.poster || !movieToAdd.description || !movieToAdd.genre_id){
             alert('Please fill out the forms')
             return;
@@ -25,6 +29,7 @@ const MovieForm = () => {
         history.push('/')
     }
 
+    //Rendering component
     return (
         <>
             <section>
@@ -80,4 +85,3 @@ const MovieForm = () => {
     )
 }
 
-export default MovieForm;
