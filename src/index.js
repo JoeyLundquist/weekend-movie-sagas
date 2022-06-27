@@ -16,6 +16,7 @@ import { takeEvery } from 'redux-saga/effects';
 import genres from './Redux/Reducers/genres';
 import movieDetails from './Redux/Reducers/movieDetails';
 import movies from './Redux/Reducers/movies';
+import moviesSortedByGenres from './Redux/Reducers/moviesSortedByGenres';
 
 //Importing Sagas
 import fetchMovieDetails from './Redux/Sagas/fetchMovieDetails';
@@ -25,6 +26,7 @@ import updateMovieDetails from './Redux/Sagas/updateMovieDetails';
 import addGenreToMovie from './Redux/Sagas/addGenreToMovie';
 import deleteGenreFromMovie from './Redux/Sagas/deleteGenreFromMovie';
 import fetchGenreList from './Redux/Sagas/fetchGenreList';
+import fetchMoviesByGenres from './Redux/Sagas/fetchMoviesByGenres';
 
 // Create the rootSaga generator function
 function* rootSaga() {
@@ -35,6 +37,7 @@ function* rootSaga() {
     yield takeEvery('ADD_GENRE_TO_MOVIE', addGenreToMovie);
     yield takeEvery('DELETE_GENRE_FROM_MOVIE', deleteGenreFromMovie);
     yield takeEvery('FETCH_GENRE_LIST', fetchGenreList);
+    yield takeEvery('FETCH_MOVIES_BY_GENRE', fetchMoviesByGenres)
 }
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -45,6 +48,7 @@ const storeInstance = createStore(
         movies,
         genres,
         movieDetails,
+        moviesSortedByGenres
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

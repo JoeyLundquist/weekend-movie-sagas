@@ -3,6 +3,7 @@ import './App.css';
 import MovieList from '../MovieList/MovieList'
 import MovieDetails from '../MovieDetails/MovieDetails';
 import MovieForm from '../MovieForm/MovieForm';
+import MoviesSortedByGenres from '../MoviesSortedByGenre/MoviesSortedByGenres';
 
 function App() {
   return (
@@ -22,6 +23,11 @@ function App() {
         <Route path="/add-movie" exact>
           <MovieForm />
         </Route>
+
+        <Route path="/genres/:genre" exact>
+          <MoviesSortedByGenres />
+        </Route>
+
       </Router>
     </div>
   );

@@ -46,7 +46,7 @@ export default function MovieDetails() {
             editingModeVariable = !editingModeVariable
 
         setInEditMode(editingModeVariable)
-        setEditedMovieInfo({id: Number(id), title: movie[0].title, description: movie[0].description})
+        setEditedMovieInfo({id: Number(id), title: movie.title, description: movie.description})
     }
 
     //Used to make saga call for adding new genres to movies
@@ -74,7 +74,7 @@ export default function MovieDetails() {
                 {/* Conditional render for edit mode */}
             {
                 !inEditMode ?
-                    <h3>{movie[0] && movie[0].title}</h3> 
+                    <h3>{movie && movie.title}</h3> 
                     : 
                     <>
                         <input 
@@ -88,7 +88,7 @@ export default function MovieDetails() {
                 {/* Conditional render for edit mode */}
             {
                 !inEditMode ? 
-                    <h4>{movie[0] && movie[0].description}</h4> 
+                    <h4>{movie && movie.description}</h4> 
                     : 
                     <>
                         <textarea 
@@ -128,13 +128,13 @@ export default function MovieDetails() {
                 {/* Conditional render for edit mode */}
             {
                 !inEditMode?
-                movie[0] && movie[0].genre.map((g) => (
+                movie.genre && movie.genre.map((g) => (
                     <>
                         <h5 key={g.id}>{g.name}</h5>
                     </>
                 )) 
                 :
-                movie[0] && movie[0].genre.map((g) => (
+                movie && movie.genre.map((g) => (
                     <>
                         <div>
                             <h5 className="genreDeleteBtn" key={g.id}>{g.name}</h5>
@@ -147,7 +147,7 @@ export default function MovieDetails() {
                 )) 
             }
             
-            <img className="details-poster" src={movie[0] && movie[0].poster}/><br></br>
+            <img className="details-poster" src={movie && movie.poster}/><br></br>
                 {/* Conditional render for edit mode */}
             {
                 !inEditMode &&   

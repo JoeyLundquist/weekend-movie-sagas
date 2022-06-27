@@ -40,7 +40,7 @@ router.get('/:id', (req, res) => {
 
   pool.query(movieDetailsQuery, movieDetailsParams)
       .then((dbRes) => {
-        res.send(dbRes.rows)
+        res.send(dbRes.rows[0])
       })
       .catch((err) => {
         console.log('Failed to get movie details', err)
