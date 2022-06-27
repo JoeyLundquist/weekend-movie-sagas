@@ -25,6 +25,7 @@
  
 body{
   background-color: black;
+  background-image: url('../../../public/images/greenGalaxy.jpg');
   color: white
 }
 
