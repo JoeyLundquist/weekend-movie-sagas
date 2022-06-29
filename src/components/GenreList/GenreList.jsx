@@ -13,7 +13,7 @@ export default function GenreList() {
             <div className="genreListContainer">
                 {genres.map(g => (
                     <div className="genreListItems">
-                        <Link to={`/genres/${g.name}`}><h5>{g.name}</h5></Link>
+                        <Link className="genre-link" to={`/genres/${g.name}`}><h5>{g.name}</h5></Link>
                     </div>
                 ))}
             </div>
